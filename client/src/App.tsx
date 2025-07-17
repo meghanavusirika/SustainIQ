@@ -4,6 +4,8 @@ import Home from './pages/Home';
 import CompanySearch from './pages/CompanySearch';
 import ESGDashboard from './pages/ESGDashboard';
 import CompanyComparison from './pages/CompanyComparison';
+import ESGNews from './pages/ESGNews';
+import PDFReport from './pages/PDFReport';
 import './App.css';
 
 const App: React.FC = () => {
@@ -17,6 +19,7 @@ const App: React.FC = () => {
           <Link to="/compare">Compare</Link>
           <Link to="/benchmark">Benchmark</Link>
           <Link to="/report">Report</Link>
+          <Link to="/news">ESG News</Link>
         </nav>
       </div>
       <Routes>
@@ -25,6 +28,8 @@ const App: React.FC = () => {
         <Route path="/dashboard/:companyId" element={<ESGDashboard />} />
         <Route path="/dashboard" element={<ESGDashboard />} />
         <Route path="/compare" element={<CompanyComparison />} />
+        <Route path="/news" element={<ESGNews />} />
+        <Route path="/report" element={<PDFReport />} />
       </Routes>
     </Router>
   );
