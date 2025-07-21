@@ -2,6 +2,11 @@
 
 A modern ESG (Environmental, Social, and Governance) intelligence platform that empowers users to analyze, compare, and benchmark companies on sustainability metrics. With AI-powered report summarization, industry benchmarking, and interactive data visualizations, SustainIQ helps organizations and individuals make informed, responsible decisions.
 
+# 🌐 Live Demo
+
+Check out the deployed application:
+🔗 https://sustainiq.onrender.com
+
 # Preview
 
 ![Home Page](https://github.com/meghanavusirika/SustainIQ/blob/main/Images/Screenshot%202025-07-21%20at%205.18.09%20AM.png)
@@ -27,7 +32,8 @@ A modern ESG (Environmental, Social, and Governance) intelligence platform that 
 - **AI & NLP**: HuggingFace Transformers, Custom RAG (Retrieval-Augmented Generation)
 - **Other Integrations**: News APIs, OpenCorporates API, ESG Book API, PDF Parsing Libraries
 
-## Setup Instructions
+## ⚙️ Local Setup Instructions
+The steps below are for developers who want to run SustainIQ locally for development or contribution purposes.
 
 ### 1. Environment Variables
 
