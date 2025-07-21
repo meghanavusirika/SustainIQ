@@ -1,0 +1,18 @@
+:root {
+  --primary-bg: #edf1f7;
+  --secondary-bg: #edf1f7;
+  --card-bg: #fff;
+  --accent: #00ba7c;
+  --primary-text: #00ba7c;
+  --secondary-text: #222;
+  --border-radius: 20px;
+  --box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  --button-radius: 8px;
+  --button-hover: #009e68;
+}
+
+body {
+  background: var(--primary-bg);
+  color: var(--secondary-text);
+  font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+} 

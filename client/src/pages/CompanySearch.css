@@ -1,5 +1,9 @@
+body, .search-container {
+  background: linear-gradient(135deg, #f8fafc 0%, #e0e7ef 100%);
+}
+
 .search-container {
-  max-width: 800px;
+  max-width: 700px;
   margin: 0 auto;
   padding: 32px 24px;
 }
@@ -11,8 +15,9 @@
 
 .search-header h1 {
   font-size: 2.4rem;
-  color: #1a3a2b;
+  color: var(--primary-text);
   margin-bottom: 12px;
+  font-weight: 700;
 }
 
 .search-header p {
@@ -29,10 +34,10 @@
   position: relative;
   display: flex;
   align-items: center;
-  background: white;
-  border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-  padding: 4px;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 2px 8px rgba(30,60,40,0.07);
+  padding: 4px 16px;
   transition: box-shadow 0.3s ease;
 }
 
@@ -76,27 +81,31 @@
 
 .suggestions-container {
   position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
   top: 100%;
-  left: 0;
-  right: 0;
-  background: white;
+  width: 480px;
+  max-width: 90vw;
+  background: #fff;
+  border: 1.5px solid #e5e7eb;
+  box-shadow: 0 8px 32px rgba(30,60,40,0.10);
   border-radius: 12px;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.12);
   margin-top: 8px;
-  max-height: 400px;
-  overflow-y: auto;
-  z-index: 1000;
+  z-index: 10;
+  padding: 8px 0;
 }
 
 .suggestion-item {
-  padding: 16px 20px;
-  border-bottom: 1px solid #f3f4f6;
+  padding: 14px 24px;
   cursor: pointer;
-  transition: background-color 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  transition: background 0.15s;
 }
 
 .suggestion-item:hover {
-  background-color: #f9fafb;
+  background: #f4f7f4;
 }
 
 .suggestion-item:last-child {
@@ -104,10 +113,8 @@
 }
 
 .company-info {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 8px;
+  font-weight: 500;
+  font-size: 1.05rem;
 }
 
 .company-name {
@@ -123,8 +130,10 @@
 }
 
 .company-details {
+  font-size: 0.95rem;
+  color: #6b7280;
   display: flex;
-  gap: 16px;
+  gap: 12px;
   align-items: center;
 }
 
@@ -150,11 +159,23 @@
 }
 
 .company-card {
-  background: white;
-  border-radius: 16px;
+  background: #fff;
+  border-radius: 20px;
   padding: 24px;
   box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-  border: 2px solid #e6f4ea;
+  border: none;
+  transition: box-shadow 0.2s, transform 0.2s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: 220px;
+  min-height: 100px;
+}
+
+.company-card:hover {
+  box-shadow: 0 8px 32px rgba(16,185,129,0.13);
+  transform: translateY(-2px) scale(1.01);
 }
 
 .company-header {
@@ -212,7 +233,7 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  background: #1a3a2b;
+  background: #04b87d;
   color: white;
   border: none;
   padding: 12px 24px;
@@ -224,12 +245,12 @@
 }
 
 .view-esg-btn:hover {
-  background: #0e1e14;
+  background: #03976a;
 }
 
 .search-tips {
-  background: #f0f9ff;
-  border: 1px solid #bae6fd;
+  background: #e6fdf5; /* lighter shade of #04b87d */
+  border: 1px solid #04b87d;
   border-radius: 12px;
   padding: 20px;
   margin-bottom: 32px;
@@ -237,7 +258,11 @@
 
 .search-tips h3 {
   margin: 0 0 12px 0;
-  color: #0369a1;
+  color: var(--accent);
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .search-tips ul {
@@ -262,7 +287,7 @@
 }
 
 .company-card-small {
-  background: white;
+  background: #fff;
   border: 1px solid #e5e7eb;
   border-radius: 12px;
   padding: 20px;
@@ -271,8 +296,8 @@
 }
 
 .company-card-small:hover {
-  border-color: #1a3a2b;
-  box-shadow: 0 4px 16px rgba(26,58,43,0.1);
+  border-color: #10b981;
+  box-shadow: 0 8px 32px rgba(16,185,129,0.13);
   transform: translateY(-2px);
 }
 
@@ -286,6 +311,45 @@
   color: #6b7280;
   font-size: 0.9rem;
   font-weight: 500;
+}
+
+.dashboard-container {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 32px 24px;
+  border-radius: 24px;
+  box-shadow: 0 8px 32px rgba(30,60,40,0.07);
+  background: #fff;
+}
+
+.company-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 2rem;
+  margin-top: 32px;
+}
+
+.search-bar-container {
+  display: flex;
+  justify-content: center;
+  margin: 32px 0 24px 0;
+}
+
+.search-bar {
+  width: 480px;
+  max-width: 90vw;
+  height: 48px;
+  font-size: 1.2rem;
+  padding: 0 20px;
+  border-radius: 12px;
+  border: 1.5px solid #d1d5db;
+  box-shadow: 0 2px 8px rgba(30,60,40,0.07);
+  outline: none;
+  transition: border 0.2s, box-shadow 0.2s;
+}
+.search-bar:focus {
+  border: 1.5px solid #04b87d;
+  box-shadow: 0 4px 16px rgba(4,184,125,0.10);
 }
 
 @media (max-width: 768px) {

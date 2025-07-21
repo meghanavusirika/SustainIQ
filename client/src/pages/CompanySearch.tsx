@@ -1,5 +1,6 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Search, Building2, TrendingUp, MapPin } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './CompanySearch.css';
 
@@ -11,13 +12,14 @@ interface Company {
   location?: string;
 }
 
-const CompanySearch: React.FC = () => {
+const ESGDashboardUnified: React.FC = () => {
+  const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState('');
   const [companies, setCompanies] = useState<Company[]>([]);
   const [filteredCompanies, setFilteredCompanies] = useState<Company[]>([]);
   const [loading, setLoading] = useState(false);
   const [selectedCompany, setSelectedCompany] = useState<Company | null>(null);
-  const [showSuggestions, setShowSuggestions] = useState(false);
+  const [showSuggestions, setShowSuggestions] = useState(false); // New state for suggestions visibility
 
   // Mock data for demonstration
   const mockCompanies: Company[] = [
@@ -33,83 +35,62 @@ const CompanySearch: React.FC = () => {
     { id: 10, name: 'Walmart Inc.', ticker: 'WMT', sector: 'Retail', location: 'Bentonville, AR' }
   ];
 
+  // Add Netflix and Google to mockCompanies if not present
+  const extendedCompanies = [
+    ...mockCompanies,
+    { id: 11, name: 'Netflix, Inc.', ticker: 'NFLX', sector: 'Technology', location: 'Los Gatos, CA' },
+    { id: 12, name: 'Google (Alphabet)', ticker: 'GOOGL', sector: 'Technology', location: 'Mountain View, CA' },
+  ];
+
   useEffect(() => {
     setCompanies(mockCompanies);
   }, []);
 
-  const searchCompanies = useCallback(async (query: string) => {
-    if (!query.trim()) {
+  useEffect(() => {
+    if (!searchQuery.trim()) {
       setFilteredCompanies([]);
       return;
     }
-
-    setLoading(true);
-    try {
-      // In a real app, this would be an API call
-      // const response = await axios.get(`/api/companies/search?query=${query}`);
-      // setFilteredCompanies(response.data);
-      
-      // Mock API response
-      const filtered = companies.filter(company =>
-        company.name.toLowerCase().includes(query.toLowerCase()) ||
-        company.ticker.toLowerCase().includes(query.toLowerCase())
-      );
-      
-      setTimeout(() => {
-        setFilteredCompanies(filtered);
-        setLoading(false);
-      }, 300); // Simulate API delay
-    } catch (error) {
-      console.error('Error searching companies:', error);
-      setLoading(false);
-    }
-  }, [companies]);
-
-  useEffect(() => {
-    const debounceTimer = setTimeout(() => {
-      searchCompanies(searchQuery);
-    }, 300);
-
-    return () => clearTimeout(debounceTimer);
-  }, [searchQuery, searchCompanies]);
+    const filtered = companies.filter(company =>
+      company.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      company.ticker.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+    setFilteredCompanies(filtered);
+  }, [searchQuery, companies]);
 
   const handleCompanySelect = (company: Company) => {
     setSelectedCompany(company);
-    setSearchQuery(company.name);
-    setShowSuggestions(false);
+    setSearchQuery(''); // Clear the search box
+    setShowSuggestions(false); // Hide suggestions
+    // Blur the input if possible
+    const input = document.querySelector<HTMLInputElement>('.search-bar');
+    if (input) input.blur();
   };
 
   const handleViewESG = () => {
     if (selectedCompany) {
-      window.location.href = `/dashboard/${selectedCompany.id}`;
+      navigate(`/dashboard/${selectedCompany.id}`);
+      setSelectedCompany(null); // Hide the card immediately
     }
   };
 
   return (
-    <div className="search-container">
-      <div className="search-header">
-        <h1>🔍 Company Search</h1>
-        <p>Search for public companies to view their ESG scores and sustainability metrics</p>
+    <div className="dashboard-container">
+      <div className="dashboard-header">
+        <h1>📊 ESG Dashboard</h1>
+        <p>Search for public companies and view their ESG scores, trends, and detailed metrics</p>
       </div>
-
-      <div className="search-section">
-        <div className="search-input-container">
-          <Search className="search-icon" />
+      <div style={{ position: 'relative', width: '100%', display: 'flex', justifyContent: 'center' }}>
+        <div className="search-bar-container" style={{ width: '100%', maxWidth: 480 }}>
           <input
             type="text"
+            className="search-bar"
             placeholder="Search by company name or ticker symbol..."
             value={searchQuery}
-            onChange={(e) => {
-              setSearchQuery(e.target.value);
-              setShowSuggestions(true);
-            }}
-            onFocus={() => setShowSuggestions(true)}
-            className="search-input"
+            onChange={(e) => setSearchQuery(e.target.value)}
           />
-          {loading && <div className="loading-spinner"></div>}
         </div>
-
-        {showSuggestions && filteredCompanies.length > 0 && (
+        {searchQuery.trim() && filteredCompanies.length > 0 && (
           <div className="suggestions-container">
             {filteredCompanies.map((company) => (
               <div
@@ -166,8 +147,8 @@ const CompanySearch: React.FC = () => {
         </div>
       )}
 
-      <div className="search-tips">
-        <h3>💡 Search Tips</h3>
+      <div className="search-tips" style={{ display: filteredCompanies.length === 0 && !selectedCompany ? 'block' : 'none' }}>
+        <span className="tips-title">💡 Search Tips</span>
         <ul>
           <li>Search by company name (e.g., "Apple", "Microsoft")</li>
           <li>Search by ticker symbol (e.g., "AAPL", "MSFT")</li>
@@ -175,23 +156,23 @@ const CompanySearch: React.FC = () => {
         </ul>
       </div>
 
-      <div className="popular-companies">
-        <h3>📈 Popular Companies</h3>
-        <div className="companies-grid">
-          {companies.slice(0, 6).map((company) => (
-            <div
-              key={company.id}
-              className="company-card-small"
-              onClick={() => handleCompanySelect(company)}
-            >
-              <div className="company-name-small">{company.name}</div>
-              <div className="company-ticker-small">{company.ticker}</div>
-            </div>
-          ))}
-        </div>
+      <div className="popular-companies-header">
+        <span>📈 Popular Companies</span>
+      </div>
+      <div className="company-grid">
+        {extendedCompanies.slice(0, 8).map((company) => (
+          <div
+            key={company.id}
+            className="company-card"
+            onClick={() => handleCompanySelect(company)}
+          >
+            <div className="company-name">{company.name}</div>
+            <div className="company-ticker">{company.ticker}</div>
+          </div>
+        ))}
       </div>
     </div>
   );
 };
 
-export default CompanySearch; 
+export default ESGDashboardUnified; 
