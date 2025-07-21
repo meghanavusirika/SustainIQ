@@ -5,7 +5,7 @@ A modern ESG (Environmental, Social, and Governance) intelligence platform that 
 # 🌐 Live Demo
 
 Check out the deployed application:
-🔗 https://sustainiq.onrender.com
+🔗 https://shelflife-4dr7.onrender.com
 
 # Preview
 
