@@ -4,9 +4,9 @@ A modern ESG (Environmental, Social, and Governance) intelligence platform that 
 
 # Preview
 
-![Recipe_Page](https://github.com/user-attachments/assets/02e0edd9-184e-49dd-bf56-e57b45f56180)
-![Home_Page](https://github.com/user-attachments/assets/5be83121-4e9d-4b17-80a6-46a0d88f77e6)
-![Recipe_Suggestions](https://github.com/user-attachments/assets/3305ab80-9797-415a-99b8-0a18f6d0d067)
+![Home Page](https://github.com/user-attachments/assets/02e0edd9-184e-49dd-bf56-e57b45f56180)
+![Company Search](https://github.com/user-attachments/assets/5be83121-4e9d-4b17-80a6-46a0d88f77e6)
+![ESG Dashboard](https://github.com/user-attachments/assets/3305ab80-9797-415a-99b8-0a18f6d0d067)
 
 ## Features
 
