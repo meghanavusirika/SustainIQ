@@ -15,6 +15,7 @@ const riskRating_1 = __importDefault(require("./routes/riskRating"));
 const prediction_1 = __importDefault(require("./routes/prediction"));
 const map_1 = __importDefault(require("./routes/map"));
 const chat_1 = __importDefault(require("./routes/chat"));
+const path_1 = __importDefault(require("path"));
 const app = (0, express_1.default)();
 const PORT = process.env.PORT || 5000;
 // Middleware
@@ -80,6 +81,12 @@ app.get('/api/esg-data/:companyId', (req, res) => {
 // Health check endpoint
 app.get('/api/health', (req, res) => {
     res.json({ status: 'OK', message: 'SustainIQ API is running' });
+});
+// Serve static files from the React app
+app.use(express_1.default.static(path_1.default.join(__dirname, '../../client/build')));
+// The "catchall" handler: for any request that doesn't match API routes, send back React's index.html
+app.get('*', (req, res) => {
+    res.sendFile(path_1.default.join(__dirname, '../../client/build', 'index.html'));
 });
 app.listen(PORT, () => {
     console.log(`🚀 SustainIQ Server running on port ${PORT}`);

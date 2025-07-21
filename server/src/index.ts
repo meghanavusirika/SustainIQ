@@ -11,6 +11,7 @@ import riskRatingRoutes from './routes/riskRating';
 import predictionRoutes from './routes/prediction';
 import mapRoutes from './routes/map';
 import chatRoutes from './routes/chat';
+import path from 'path';
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -82,6 +83,14 @@ app.get('/api/esg-data/:companyId', (req, res) => {
 // Health check endpoint
 app.get('/api/health', (req, res) => {
   res.json({ status: 'OK', message: 'SustainIQ API is running' });
+});
+
+// Serve static files from the React app
+app.use(express.static(path.join(__dirname, '../../client/build')));
+
+// The "catchall" handler: for any request that doesn't match API routes, send back React's index.html
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../../client/build', 'index.html'));
 });
 
 app.listen(PORT, () => {
