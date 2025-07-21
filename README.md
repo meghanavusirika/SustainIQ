@@ -4,8 +4,8 @@ A modern ESG (Environmental, Social, and Governance) intelligence platform that 
 
 # Preview
 
-![Home Page](https://github.com/meghanavusirika/SustainIQ/blob/main/Images/Screenshot%202025-07-21%20at%204.25.19%20AM.png)
-![Company Search](https://github.com/meghanavusirika/SustainIQ/blob/main/Images/Screenshot%202025-07-21%20at%204.25.44%20AM.png)
+![Home Page](https://github.com/meghanavusirika/SustainIQ/blob/main/Images/Screenshot%202025-07-21%20at%205.18.09%20AM.png)
+![Company Search](https://github.com/meghanavusirika/SustainIQ/blob/main/Images/Screenshot%202025-07-21%20at%205.17.45%20AM.png)
 ![ESG Dashboard](https://github.com/meghanavusirika/SustainIQ/blob/main/Images/Screenshot%202025-07-21%20at%204.04.32%20AM.png)
 
 ## Features
