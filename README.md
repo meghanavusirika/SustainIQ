@@ -20,16 +20,16 @@ A modern ESG (Environmental, Social, and Governance) intelligence platform that 
 - 📄 **PDF Report Parsing**: Extract and analyze data from ESG PDF reports
 - ⚡ **AI ESG Risk & Prediction**: Get AI-driven risk scores and ESG trend predictions for companies
 
-##Tech Stack
+## Tech Stack
 
 - **Frontend**: React, TypeScript, CSS Modules
 - **Backend**: Node.js, Express
 - **AI & NLP**: HuggingFace Transformers, Custom RAG (Retrieval-Augmented Generation)
 - **Other Integrations**: News APIs, OpenCorporates API, ESG Book API, PDF Parsing Libraries
 
-##Setup Instructions
+## Setup Instructions
 
-###1. Environment Variables
+### 1. Environment Variables
 
 Create and configure your environment variables for both client and server as needed.
 
